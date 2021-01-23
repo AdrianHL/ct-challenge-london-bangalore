@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animating Symbols</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=geometry&v=weekly"
+      defer
+    ></script>
+    <script>
+      // This is the value to define with the miles left
+      const milesLeft = 5123;
+
+      const latLondon = 51.5016561;
+      const lngLondon = -0.1058195;
+
+      const latBangalore = 12.9542946;
+      const lngBangalore = 77.4908544;
+
+      const milesTotal = 5978;
+
+      const porcentageDone = (milesTotal - milesLeft) / milesTotal;
+
+      function initMap() {
+
+        var startPoint =  new google.maps.LatLng(latLondon, lngLondon);
+        var endPoint = new google.maps.LatLng(latBangalore, lngBangalore);
+        var progressPoint = new google.maps.geometry.spherical.interpolate(startPoint, endPoint, porcentageDone);
+
+
+        const map = new google.maps.Map(document.getElementById("challenge"), {
+          center: { lat: progressPoint.lat(), lng: progressPoint.lng() },
+          zoom: 4,
+          mapTypeId: "terrain",
+        });
+
+        var line = new google.maps.Polyline({
+          path: [startPoint, endPoint],
+          strokeColor: "#008CBA",
+          geodesic: true,
+          strokeOpacity: 0.5,
+          strokeWeight: 5,
+          map: map
+        });
+
+        var partialLine = new google.maps.Polyline({
+          path: [startPoint, progressPoint],
+          strokeColor: "#FF0000",
+          geodesic: true,
+          strokeOpacity: 0.5,
+          strokeWeight: 5,
+          map: map
+        });
+
+        new google.maps.Marker({
+          position: progressPoint,
+          map,
+          title: "CT Challenge (2021) - London to Bangalore",
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="challenge"></div>
+  </body>
+</html>
