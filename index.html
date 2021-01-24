@@ -10,8 +10,9 @@
     <script>
       function initMap() {
 
-      var params = new URLSearchParams(window.location.search)
-      var milesLeftParam = params.has("left") ? params.get("left") : 0;
+      var params = new URLSearchParams(window.location.search);
+      
+      var milesLeftParam = parseInt(params.has("left") ? params.get("left") : "0");
       
       // This is the value to define with the miles left
       const milesLeft = milesLeftParam ? milesLeftParam : 0;
