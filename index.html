@@ -10,13 +10,10 @@
     <script>
       function initMap() {
 
-        //var params = new URLSearchParams(window.location.search);
+        var params = new URLSearchParams(window.location.search);
 
-        //var milesLeftParam = parseInt(params.has("left") ? params.get("left") : "0");
-
-        const milesLeftParam = 0;
+        const milesLeftParam = parseInt(params.has("left") ? params.get("left") : "0");
         
-        // This is the value to define with the miles left
         const milesLeft = milesLeftParam ? milesLeftParam : 0;
 
         const latLondon = 51.5016561;
@@ -64,6 +61,21 @@
         });
       }
     </script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #challenge {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <div id="challenge"></div>
