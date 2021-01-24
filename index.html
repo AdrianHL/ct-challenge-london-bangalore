@@ -24,7 +24,7 @@
 
         const milesTotal = 5978;
 
-        const porcentageDone = milesLeft / milesTotal;
+        const porcentageDone = (milesTotal - milesLeft) / milesTotal;
         
         var startPoint =  new google.maps.LatLng(latLondon, lngLondon);
         var endPoint = new google.maps.LatLng(latBangalore, lngBangalore);
