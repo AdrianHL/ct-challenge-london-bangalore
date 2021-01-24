@@ -8,8 +8,10 @@
       defer
     ></script>
     <script>
-      var url = new URL(url_string);
-      var milesLeftParam = url.searchParams.get("left");
+      function initMap() {
+
+      var params = new URLSearchParams(window.location.search)
+      var milesLeftParam = params.has("left") ? params.get("left") : 0;
       
       // This is the value to define with the miles left
       const milesLeft = milesLeftParam ? milesLeftParam : 0;
@@ -23,9 +25,7 @@
       const milesTotal = 5978;
 
       const porcentageDone = milesLeft / milesTotal;
-
-      function initMap() {
-
+        
         var startPoint =  new google.maps.LatLng(latLondon, lngLondon);
         var endPoint = new google.maps.LatLng(latBangalore, lngBangalore);
         var progressPoint = new google.maps.geometry.spherical.interpolate(startPoint, endPoint, porcentageDone);
