@@ -8,8 +8,11 @@
       defer
     ></script>
     <script>
+      var url = new URL(url_string);
+      var milesLeftParam = url.searchParams.get("left");
+      
       // This is the value to define with the miles left
-      const milesLeft = 5123;
+      const milesLeft = milesLeftParam ? milesLeftParam : 0;
 
       const latLondon = 51.5016561;
       const lngLondon = -0.1058195;
